@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  postgres-development:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "postgres" # Calmdown, that's not my password
+    volumes:
+      - ~/Downloads/volumes/postgres:/var/lib/postgresql/data
+  pdadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "16543:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "email@email.com"
+      PGADMIN_DEFAULT_PASSWORD: "mysecurepass"
+    volumes:
+      - $HOME/docker/volumes/pgadmin4:/var/lib/pgadmin
+    depends_on:
+      - postgres-development
