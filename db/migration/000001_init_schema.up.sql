@@ -13,15 +13,15 @@ CREATE TABLE "accounts" (
 
 CREATE TABLE "entries" (
   "id" bigserial PRIMARY KEY,
-  "account_id" bigint,
+  "account_id" bigint not null,
   "amount" bigint NOT NULL,
   "created_at" timestamp NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "transfers" (
   "id" bigserial PRIMARY KEY,
-  "from_account_id" bigserial,
-  "to_account_id" bigserial,
+  "from_account_id" bigserial not null,
+  "to_account_id" bigserial not null,
   "amount" bigint NOT NULL,
   "created_at" timestamp DEFAULT (now())
 );
